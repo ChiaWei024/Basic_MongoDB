@@ -11,8 +11,8 @@ const bcrypt = require("bcrypt");
 
 // JWT
 const jwt = require("jsonwebtoken");
-// env
-require("dotenv").config();
+// env (to beginning of sever.js)
+// require("dotenv").config();
 //
 const fsPromises = require("fs").promises;
 const path = require("path");

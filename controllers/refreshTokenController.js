@@ -8,8 +8,8 @@ const usersDB = {
 
 // JWT
 const jwt = require("jsonwebtoken");
-// env
-require("dotenv").config();
+// env (to beginning of sever.js)
+// require("dotenv").config();
 
 // handle refresh token
 const handleRefreshToken = (req, res) => {

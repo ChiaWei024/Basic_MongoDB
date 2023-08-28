@@ -1,3 +1,10 @@
+// dotenv
+require("dotenv").config();
+
+// mongoose
+const mongoose = require("mongoose");
+const connectDB = require("./config/dbConn");
+
 // express
 const express = require("express");
 const app = express();
@@ -5,6 +12,9 @@ const app = express();
 const path = require("path");
 // port
 const PORT = process.env.PORT || 3500;
+
+// Step 1. Connect to DB
+connectDB();
 
 // jwt verify
 const verifyJWT = require("./middleware/verifyJWT");
@@ -79,4 +89,10 @@ app.all("*", (req, res) => {
 const errHandler = require("./middleware/errHandler");
 app.use(errHandler);
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// If we dont connect, we dont want to listen
+// first listen to mongoose "open" connection event once
+// See more details in mongoose doc
+mongoose.connection.once("open", () => {
+  console.log("Connected to MongoDB");
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+});

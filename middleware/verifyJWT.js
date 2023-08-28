@@ -1,7 +1,7 @@
 // JWT
 const jwt = require("jsonwebtoken");
-// env
-require("dotenv").config();
+// env (to beginning of sever.js)
+// require("dotenv").config();
 
 //
 const verifyJWT = (req, res, next) => {
