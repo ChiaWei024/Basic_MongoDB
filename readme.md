@@ -14,5 +14,17 @@ Following previous practice: Basic_UserRole_Authorization - https://github.com/C
 
    - Elegant mongodb object modeling for node.js
 
-1. 0828 紀錄 -> 可以連上 DB 後面繼續
-   - database user: mongotut/ testing123 (see env)
+1. Connect to MongoDB
+
+   - database user: mongotut/ my password (see .env)
+   - mongoose.connection.once("open", ...): listen once to open event
+
+1. Using Mongoose model to realize CRUD operation.
+
+   - Mongoose Schema: https://mongoosejs.com/docs/guide.html
+
+1. Promises, query, and exec()
+
+1. Do not add ; at the end of line in .env file.
+   - MongoDB connection string will fail.
+   - https://stackoverflow.com/questions/65305856/no-write-concern-mode-named-majority-found-in-replica-set-configuration-err

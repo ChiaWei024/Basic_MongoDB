@@ -1,10 +1,4 @@
-// Pulled in the simulated user database
-const usersDB = {
-  users: require("../model/users.json"),
-  setUsers: function (data) {
-    this.users = data;
-  },
-};
+const User = require("../model/User");
 
 //
 const bcrypt = require("bcrypt");
@@ -28,7 +22,7 @@ const handleLogin = async (req, res) => {
   }
 
   // find user
-  const foundUser = usersDB.users.find((person) => person.username === user);
+  const foundUser = await User.findOne({ username: user }).exec();
   if (!foundUser) {
     return res.sendStatus(401); // Unautherize
   }
@@ -56,17 +50,9 @@ const handleLogin = async (req, res) => {
       { expiresIn: "1d" }
     );
     // save refresh token to DB
-    // filter: create array of users with out the loggin one
-    const otherUser = usersDB.users.filter((person) => {
-      return person.username !== foundUser.username;
-    });
-    // save current user with created token
-    const currentUser = { ...foundUser, refreshToken };
-    usersDB.setUsers([...otherUser, currentUser]);
-    await fsPromises.writeFile(
-      path.join(__dirname, "..", "model", "users.json"),
-      JSON.stringify(usersDB.users)
-    );
+    foundUser.refreshToken = refreshToken;
+    const result = await foundUser.save();
+    console.log(result);
 
     // return res.json({ success: `User ${user} is logged in!` });
     // send the token

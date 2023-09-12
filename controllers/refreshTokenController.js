@@ -1,10 +1,4 @@
-// Pulled in the simulated user database
-const usersDB = {
-  users: require("../model/users.json"),
-  setUsers: function (data) {
-    this.users = data;
-  },
-};
+const User = require("../model/User");
 
 // JWT
 const jwt = require("jsonwebtoken");
@@ -12,7 +6,7 @@ const jwt = require("jsonwebtoken");
 // require("dotenv").config();
 
 // handle refresh token
-const handleRefreshToken = (req, res) => {
+const handleRefreshToken = async (req, res) => {
   // looking for cookie in req
   const cookies = req.cookies;
   // chk if cookie exist, and if exist, is cookie.jwt exist (chaining)
@@ -24,9 +18,7 @@ const handleRefreshToken = (req, res) => {
   const refreshToken = cookies.jwt;
 
   // find user by refresh token
-  const foundUser = usersDB.users.find(
-    (person) => person.refreshToken === refreshToken
-  );
+  const foundUser = await User.findOne({ refreshToken }).exec();
   if (!foundUser) {
     return res.sendStatus(403); // forbidden
   }
