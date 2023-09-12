@@ -25,6 +25,8 @@ Following previous practice: Basic_UserRole_Authorization - https://github.com/C
 
 1. Promises, query, and exec()
 
+   - https://mongoosejs.com/docs/queries.html
+
 1. Do not add ; at the end of line in .env file.
    - MongoDB connection string will fail.
    - https://stackoverflow.com/questions/65305856/no-write-concern-mode-named-majority-found-in-replica-set-configuration-err
