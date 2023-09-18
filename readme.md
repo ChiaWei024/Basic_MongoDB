@@ -1,14 +1,14 @@
 # Description
 
-This is a practice of basic MongoDB and mongoose.
+This practice connects to a MongoDB database and create models/schenmas using mongoose.
 
 Following the tutorial: https://www.youtube.com/watch?v=f2EqECiTBL8
 
 Following previous practice: Basic_UserRole_Authorization - https://github.com/ChiaWei024/Basic_UserRole_Authorization.git
 
-# Content
+# Miscellaneous
 
-1. For cleaner code, put dotenv at the beginning of server.js.
+1. Require dotenv at the beginning of server.js for neat code.
 
 1. Mongoose: https://mongoosejs.com/docs/guide.html
 
@@ -17,7 +17,7 @@ Following previous practice: Basic_UserRole_Authorization - https://github.com/C
 1. Connect to MongoDB
 
    - database user: mongotut/ my password (see .env)
-   - mongoose.connection.once("open", ...): listen once to open event
+   - mongoose.connection.once("open", ...): Listen once to open event. If the connection is created, then listen to the opened local port.
 
 1. Using Mongoose model to realize CRUD operation.
 
